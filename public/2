@@ -1,0 +1,243 @@
+const toggleTheme = document.querySelector("#ball");
+const container = document.querySelector(".container");
+const screen = document.querySelector(".screen");
+const keypad = document.querySelector(".keypad");
+const allKeys = document.querySelectorAll(".keypad > button");
+
+const button = document.querySelector(".button");
+const numKeys = document.querySelectorAll(".numbers");
+const operators = document.querySelectorAll(".operator");
+
+let inputValue = document.querySelector(".screen > h4");
+let currentValue = document.querySelector("#currentValue");
+let operatorSign = document.querySelector("#sign");
+let selectedOperation = "";
+
+let dotBtn = document.getElementById("dot");
+let deleteBtn = document.getElementById("delete");
+let num = 1;
+
+// theme changer
+button.addEventListener("click", () => {
+  num++;
+  switch (num) {
+    case 1:
+      // remove
+      toggleTheme.classList.remove("theme-3");
+      toggleTheme.classList.remove("theme-3");
+      toggleTheme.classList.remove("ball-theme3");
+      container.classList.remove("theme-3-container");
+      screen.classList.remove("theme-3-screen");
+      keypad.classList.remove("theme-3-keypad");
+      button.classList.remove("button-theme3");
+      allKeys.forEach((keys) => {
+        if (keys.id === "reset" || keys.id === "delete") {
+          keys.classList.remove("reset-delete-theme3");
+          keys.classList.remove("hover-reset-delete-theme3");
+        } else if (keys.id === "equal") {
+          keys.classList.remove("equal-theme3");
+          keys.classList.remove("hover-equal-theme3");
+        } else {
+          keys.classList.remove("theme-3-allKeys");
+          keys.classList.remove("hover-theme3-btn");
+        }
+      });
+      // add
+      toggleTheme.classList.add("theme-1");
+      break;
+    case 2:
+      // remove
+      toggleTheme.classList.remove("theme-1");
+      toggleTheme.classList.add("theme-2");
+      // add
+      container.classList.add("theme-2-container");
+      screen.classList.add("theme-2-screen");
+      keypad.classList.add("theme-2-keypad");
+      button.classList.add("button-theme2");
+      allKeys.forEach((keys) => {
+        if (keys.id === "reset" || keys.id === "delete") {
+          keys.classList.add("reset-delete-theme2");
+          keys.classList.add("hover-reset-delete-theme2");
+          keys.classList.remove("hover-reset-delete-theme3");
+        } else if (keys.id === "equal") {
+          keys.classList.add("equal-theme2");
+          keys.classList.add("hover-equal-theme2");
+        } else {
+          keys.classList.add("theme-2-allKeys");
+          keys.classList.add("hover-theme2-btn");
+        }
+      });
+
+      break;
+    case 3:
+      // remove
+      toggleTheme.classList.remove("theme-2");
+      container.classList.remove("theme-2-container");
+      screen.classList.remove("theme-2-screen");
+      keypad.classList.remove("theme-2-keypad");
+      button.classList.remove("button-theme2");
+      // add
+      toggleTheme.classList.add("theme-3");
+      toggleTheme.classList.add("ball-theme3");
+      container.classList.add("theme-3-container");
+      screen.classList.add("theme-3-screen");
+      keypad.classList.add("theme-3-keypad");
+      button.classList.add("button-theme3");
+      allKeys.forEach((keys) => {
+        if (keys.id === "reset" || keys.id === "delete") {
+          keys.classList.remove("reset-delete-theme2");
+          keys.classList.remove("hover-reset-delete-theme2");
+          keys.classList.add("reset-delete-theme3");
+          keys.classList.add("hover-reset-delete-theme3");
+        } else if (keys.id === "equal") {
+          keys.classList.remove("equal-theme2");
+          keys.classList.remove("hover-equal-theme2");
+          keys.classList.add("equal-theme3");
+          keys.classList.add("hover-equal-theme3");
+        } else {
+          keys.classList.remove("theme-2-allKeys");
+          keys.classList.remove("hover-theme2-btn");
+          keys.classList.add("theme-3-allKeys");
+          keys.classList.add("hover-theme3-btn");
+        }
+      });
+      num = 0;
+      break;
+  }
+});
+let ctr = 0;
+let dotCtr = 0;
+let anotherDotCtr = 0;
+const numList = [];
+let total = null;
+let x = null;
+let y = null;
+
+// keys event
+allKeys.forEach((keys) =>
+  keys.addEventListener("click", (e) => {
+    // limit
+    if (inputValue.textContent.length > 15) {
+      numKeys.forEach((numberKeys) => (numberKeys.disabled = true));
+    }
+    switch (e.currentTarget.className) {
+      case "numbers":
+        operators.forEach((operands) => operands.classList.remove("isAlive"));
+        if (currentValue.textContent !== "" && inputValue.textContent !== "") {
+          while (ctr < 1) {
+            if (inputValue.textContent === ".") {
+              ctr++;
+            } else {
+              inputValue.textContent = "";
+              ctr++;
+            }
+          }
+        }
+        // dot
+        if (!inputValue.textContent.includes(".")) {
+          dotBtn.disabled = false;
+        } else {
+          dotBtn.disabled = true;
+        }
+        inputValue.textContent += e.currentTarget.textContent;
+        deleteBtn.disabled = false;
+        break;
+      case "operator":
+        ctr = 0;
+        operatorSign.textContent = e.currentTarget.textContent;
+        selectedOperation = e.currentTarget.id;
+        currentValue.textContent = inputValue.textContent;
+        if (numList.length === 0) {
+          numList.push(parseFloat(currentValue.textContent));
+        } else if (numList.length > 0) {
+          numList.push(parseFloat(inputValue.textContent));
+          switch (selectedOperation) {
+            case "plus":
+              total = numList.reduce((all, current) => all + current);
+              console.log(total);
+              numList.length = 0;
+              inputValue.textContent = total;
+              currentValue.textContent = total;
+              break;
+            case "minus":
+              total = numList.reduce((all, current) => all - current);
+              numList.length = 0;
+              console.log(total);
+              inputValue.textContent = total;
+              currentValue.textContent = total;
+              break;
+            case "multiply":
+              total = numList.reduce((all, current) => all * current);
+              numList.length = 0;
+              console.log(total);
+              inputValue.textContent = total;
+              currentValue.textContent = total;
+              break;
+            case "divide":
+              if (numList[1] !== 0) {
+                total = numList.reduce((all, current) => all / current);
+                numList.length = 0;
+                console.log(total);
+                inputValue.textContent = total;
+                currentValue.textContent = total;
+              } else {
+                inputValue.textContent = "ERROR";
+                numList.length = 0;
+              }
+              break;
+          }
+        }
+        console.log(numList);
+        break;
+      case "others":
+        if (e.currentTarget.id === "reset") {
+          numList.length = 0;
+          inputValue.textContent = "";
+          currentValue.textContent = "";
+          operatorSign.textContent = "";
+          total = null;
+        } else if (e.currentTarget.id === "dot") {
+          if (!inputValue.textContent.includes(".")) {
+            inputValue.textContent += e.currentTarget.textContent;
+            e.currentTarget.disabled = true;
+          } else if (
+            inputValue.textContent !== "" &&
+            currentValue.textContent !== ""
+          ) {
+            inputValue.textContent = "";
+          }
+        }
+        if (e.currentTarget.id === "delete") {
+          inputValue.textContent = inputValue.textContent.slice(0, -1);
+        }
+        break;
+    }
+  })
+);
+
+// allow only one click per operation and open again if  number clicked
+let count = 0;
+let previous;
+operators.forEach((operands) => {
+  operands.addEventListener("click", (e) => {
+    if (count === 1) {
+      previous.classList.remove("isAlive");
+      count = 0;
+    }
+    e.currentTarget.classList.toggle("isAlive");
+    previous = e.currentTarget;
+    count++;
+  });
+  if (currentValue.textContent === "") {
+    operands.classList.add("isAlive");
+  } else {
+    operands.classList.remove("isAlive");
+  }
+});
+
+
+else if (selectedOperation === "equal" && numList.length > 1) {
+            numList.push(parseFloat(inputValue.textContent));
+            performCalculation(pastOperation);
+            pastOperation = null;
+          }

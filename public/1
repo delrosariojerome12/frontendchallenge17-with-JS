@@ -1,0 +1,97 @@
+  // if (currentValue.textContent !== "" && newInputValue !== null) {
+  //           let int1 = parseFloat(currentValue.textContent);
+  //           let int2 = parseFloat(newInputValue);
+  //           inputValue.textContent = int1 + int2;
+  //         }
+
+
+
+          ***************************
+    //        switch (e.currentTarget.className) {
+    //   case "numbers":
+    //     if (inputValue.textContent !== "" && currentValue.textContent !== "") {
+    //       while (ctr < 1) {
+    //         inputValue.textContent = "";
+    //         ctr++;
+    //       }
+    //     }
+    //     inputValue.textContent += e.currentTarget.textContent;
+    //     break;
+    //   case "operator":
+    //     ctr = 0;
+    //     selectedOperation = e.currentTarget.id;
+    //     currentValue.textContent = inputValue.textContent;
+    //     // validation fot performing operation
+    //     if (newInputValue1 === null) {
+    //       newInputValue1 = parseFloat(currentValue.textContent);
+    //     } else if (newInputValue1 !== null && newInputValue2 === null) {
+    //       newInputValue2 = parseFloat(inputValue.textContent);
+    //     }
+    //     if (e.currentTarget.id === "plus") {
+    //       operatorSign.textContent = "+";
+    //       total = newInputValue1 + newInputValue2;
+    //     } else if (e.currentTarget.id === "minus") {
+    //       operatorSign.textContent = "-";
+    //       total = newInputValue1 - newInputValue2;
+    //     } else if (e.currentTarget.id === "multiply") {
+    //       operatorSign.textContent = "x";
+    //       total = newInputValue1 * newInputValue2;
+    //     } else if (e.currentTarget.id === "divide") {
+    //       operatorSign.textContent = "÷";
+    //       total = newInputValue1 / newInputValue2;
+    //     } else if (e.currentTarget.id === "equal") {
+    //       operatorSign.textContent = "=";
+    //     }
+    //     currentValue.textContent = total;
+    //     inputValue.textContent = total;
+        
+    //     if (newInputValue1 !== null && newInputValue2 !== null) {
+    //       newInputValue1 = null;
+    //       newInputValue2 = total;
+    //     }
+    //     break;
+    //   case "no-repeat":
+    //     e.currentTarget.disabled = true;
+    //     inputValue.textContent += e.currentTarget.textContent;
+    //     break;
+    //   case "others":
+    //     inputValue.textContent = "";
+    //     currentValue.textContent = "";
+    //     newInputValue1 = null;
+    //     newInputValue2 = null;
+    //     operatorSign.textContent = "";
+    // }
+
+
+
+
+        switch (selectedOperation) {
+            case "plus":
+              total = numList.reduce((all, current) => all + current);
+              inputValue.textContent = total;
+              currentValue.textContent = total;
+              break;
+            case "minus":
+              total = numList.reduce((all, current) => all - current);
+              console.log(total);
+              inputValue.textContent = total;
+              currentValue.textContent = total;
+              break;
+            case "multiply":
+              total = numList.reduce((all, current) => all * current);
+              console.log(total);
+              inputValue.textContent = total;
+              currentValue.textContent = total;
+              break;
+            case "divide":
+              if (numList[1] !== 0) {
+                total = numList.reduce((all, current) => all / current);
+                console.log(total);
+                inputValue.textContent = total;
+                currentValue.textContent = total;
+              } else {
+                inputValue.textContent = "ERROR";
+                numList.length = 0;
+              }
+              break;
+          }

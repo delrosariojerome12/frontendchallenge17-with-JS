@@ -1,0 +1,391 @@
+* {
+  padding: 0%;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 3.2rem;
+}
+:root {
+  /* theme 1 */
+  /* background */
+  --mainBg: hsl(222, 26%, 31%);
+  --toggleBg: hsl(223, 31%, 20%);
+  --screenBg: hsl(224, 36%, 15%);
+  /* keys */
+  --keyBg: hsl(225, 21%, 49%);
+  --keyShadow: hsl(224, 28%, 35%);
+  --keyBgToggled: hsl(6, 63%, 50%);
+  --keyShadowToggled: hsl(6, 70%, 34%);
+  --keyBg2: hsl(30, 25%, 89%);
+  --keyShadow2: hsl(28, 16%, 65%);
+  /* text */
+  --textColorTheme1: hsl(221, 14%, 31%);
+  --white: hsl(0, 0, 100%);
+  /* font-family */
+  --spartan: "Spartan", sans-serif;
+
+  /* theme 2 */
+  /* backgrounds */
+  --mainBg2: hsl(0, 0%, 90%);
+  --toggleBg2: hsl(0, 5%, 81%);
+  --screenBg2: hsl(0, 0%, 93%);
+  /* keys */
+  --keyBgTheme2: hsl(185, 42%, 37%);
+  --keyShadowTheme2: hsl(185, 58%, 25%);
+  --keyBgToggleTheme2: hsl(25, 98%, 40%);
+  --keyShadowTheme2Alternate: hsl(25, 99%, 27%);
+  --keyBgTheme2Alternate2: hsl(45, 7%, 89%);
+  --keyShadowTheme2Alternate2: hsl(35, 11%, 61%);
+  /* text  */
+  --textTheme2: hsl(60, 10%, 19%);
+  /* theme 3 */
+  /* bg */
+  --mainBg3: hsl(268, 75%, 9%);
+  --toggleBgKeyPadScreen3: hsl(268, 76%, 15%);
+  /* keys */
+  --keybgTheme3: hsl(281, 89%, 26%);
+  --keyShadowTheme3: hsla(285, 97%, 47%, 0.603);
+  --keyBgToggleTheme3: hsl(176, 100%, 44%);
+  --keyShadowTheme3alternate: hsl(177, 92%, 70%);
+  --keyBgTheme3Alternate: hsl(268, 47%, 21%);
+  --keyBgTheme3Alternate2: hsl(290, 70%, 36%);
+  --keysTheme3: hsl(273, 45%, 32%);
+  /* text */
+  --yellow: hsl(52, 100%, 62%);
+  --darkBlue: hsl(198, 20%, 13%);
+}
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--mainBg);
+  font-family: var(--spartan);
+  font-weight: 700;
+  color: #fff;
+}
+.calculator {
+  /* width: 90%; */
+  width: 34rem;
+  height: 90%;
+  /* border: solid 1px #000; */
+  display: grid;
+  /* not breaking */
+  grid-template-rows: minmax(auto, 10%) minmax(auto, 17%) minmax(auto, 73%);
+  gap: 1rem;
+}
+/* .calculator > * {
+  border: solid 1px #000;
+} */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header > * {
+  /* border: solid 1px #000; */
+  height: 60%;
+}
+header h4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.theme-selector {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.button {
+  height: 60%;
+  /* border: solid 1px #000; */
+  width: 8rem;
+  border-radius: 2.5rem;
+  background-color: var(--toggleBg);
+  display: flex;
+  align-items: center;
+  padding: 0.8rem;
+  position: relative;
+}
+.button #ball {
+  border: none;
+  outline: none;
+  background-color: var(--keyBgToggled);
+  height: 1.9rem;
+  width: 1.9rem;
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+}
+/* moving ball */
+.theme-1 {
+  transform: translateX(0%);
+}
+.theme-2 {
+  transform: translateX(110%);
+}
+.theme-3 {
+  transform: translateX(230%);
+}
+
+.theme-number {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  /* border: #fff solid 1px; */
+  top: 0;
+  left: 0%;
+  transform: translateY(-120%);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.theme-number p {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+/* display */
+
+.display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.screen {
+  height: 80%;
+  width: 34rem;
+  /* border: #fff solid 1px; */
+  background-color: var(--screenBg);
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 1rem;
+  /* overflow-wrap: break-word; */
+  /* flex-wrap: wrap; */
+  /* word-break: break-all; */
+  position: relative;
+}
+.screen > h4 {
+  word-break: break-all;
+  /* word-wrap: break-word; */
+  /* overflow-wrap: break-word; */
+  font-size: 2.3rem;
+}
+.upper-con {
+  position: absolute;
+  top: 5%;
+  right: 3%;
+  /* border: solid 1px #fff; */
+  width: 95%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.upper-con > * {
+  /* border: solid 1px #fff; */
+  height: 100%;
+  font-size: 1.5rem;
+  margin: 0.5rem;
+  display: flex;
+  align-items: center;
+  display: none;
+  color: hsl(0, 1%, 65%);
+}
+
+/* keypad */
+.keypad {
+  width: 100%;
+  height: 90%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 1.2rem;
+  padding: 2rem;
+  background-color: var(--toggleBg);
+  border-radius: 1rem;
+}
+.keypad > button {
+  border-radius: 1rem;
+  box-shadow: 0rem -0.5rem 0.5rem var(--keyShadow) inset;
+  border: none;
+  outline: none;
+  background-color: var(--keyBg2);
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--textColorTheme1);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+/* other keys */
+#reset {
+  grid-column: 1/3;
+  background-color: var(--keyBg);
+  color: white;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+#equal {
+  grid-column: 3/5;
+  background-color: var(--keyBgToggled);
+  color: white;
+}
+#delete {
+  grid-row: 1/2;
+  grid-column: 4/5;
+  background-color: var(--keyBg);
+  color: #fff;
+}
+#dot {
+  grid-column: 1/2;
+  grid-row: 4/5;
+}
+/* operators */
+.keypad > .operator {
+  font-size: 2rem;
+}
+#plus {
+  grid-column: 4/5;
+  grid-row: 2/3;
+}
+#minus {
+  grid-row: 3/4;
+  grid-column: 4/5;
+}
+#multiply {
+  grid-column: 4/5;
+  grid-row: 4/5;
+}
+#divide {
+  grid-row: 4/5;
+  grid-column: 3/4;
+}
+
+/* numbers */
+.keypad > .numbers {
+  font-size: 3rem;
+}
+/* theme 1 */
+.keypad > button:hover {
+  background-color: var(--keyBgToggled);
+  color: #fff;
+}
+#reset:hover,
+#delete:hover {
+  background-color: #fff;
+  color: #000;
+}
+#equal:hover {
+  background-color: #fff;
+  color: var(--keyBgToggled);
+}
+
+/* theme 2 switch */
+/* add hover key! */
+.hover-theme2-btn:hover {
+  background-color: var(--keyBgTheme2) !important;
+  color: #fff !important;
+}
+.hover-reset-delete-theme2:hover {
+  background-color: #fff !important;
+  color: var(--keyBgTheme2) !important;
+}
+.hover-equal-theme2:hover {
+  background-color: #fff !important;
+  color: var(--keyBgToggled) !important;
+}
+
+/* theme 3 */
+.hover-theme3-btn:hover {
+  background-color: var(--yellow) !important;
+  color: var(--toggleBgKeyPadScreen3) !important;
+}
+.hover-reset-delete-theme3:hover {
+  background-color: var(--keyBgToggleTheme3) !important;
+  box-shadow: 0 -0.5rem 0 var(--keyShadowTheme3alternate) inset !important;
+  color: var(--keysTheme3);
+}
+.hover-equal-theme3:hover {
+  background-color: var(--keybgTheme3) !important;
+  box-shadow: 0 -0.5rem 0 var(--keyShadowTheme3) inset !important;
+  color: #fff !important;
+}
+
+/* theme 2 */
+/* other */
+.theme-2-container {
+  background-color: var(--mainBg2);
+  color: var(--textTheme2);
+}
+.theme-2-screen {
+  background-color: #fff;
+}
+.theme-2-keypad {
+  background-color: var(--toggleBg2);
+}
+.theme-2-allKeys {
+  background-color: #fff !important;
+  box-shadow: 0 -0.5rem 0rem var(--keyShadowTheme2Alternate2) inset !important;
+}
+.reset-delete-theme2 {
+  background-color: var(--keyBgTheme2) !important;
+  box-shadow: 0 -0.5rem 0rem var(--keyShadowTheme2) inset !important;
+}
+.equal-theme2 {
+  background-color: var(--keyBgToggleTheme2) !important;
+  box-shadow: 0 -0.5rem 0rem var(--keyShadowTheme2Alternate) inset !important;
+}
+.button-theme2 {
+  background-color: var(--toggleBg2);
+}
+/* theme 3 switch */
+.theme-3-container {
+  background-color: var(--mainBg3);
+  color: var(--yellow);
+}
+.theme-3-screen {
+  background-color: var(--toggleBgKeyPadScreen3);
+}
+.theme-3-keypad {
+  /* background-color: var(--keyBgTheme3Alternate); */
+  background-color: var(--toggleBgKeyPadScreen3);
+}
+.theme-3-allKeys {
+  color: var(--yellow) !important;
+  background-color: var(--keyBgTheme3Alternate) !important;
+  box-shadow: 0 -0.3rem 0rem var(--keyShadowTheme3) inset !important;
+}
+.reset-delete-theme3 {
+  background-color: var(--keybgTheme3) !important;
+  box-shadow: 0 -0.5rem 0rem var(--keyShadowTheme3) inset !important;
+}
+.equal-theme3 {
+  background-color: var(--keyBgToggleTheme3) !important;
+  box-shadow: 0 -0.3rem 0rem var(--keyShadowTheme3alternate) inset !important;
+  color: var(--darkBlue);
+}
+.ball-theme3 {
+  background-color: var(--keyBgToggleTheme3) !important;
+}
+.button-theme3 {
+  background-color: var(--toggleBgKeyPadScreen3);
+}
+
+.isAlive {
+  pointer-events: none;
+  /* background-color: red !important; */
+}
+.equalSign {
+  display: none;
+}
+.show {
+  display: flex;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Spartan:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/b735554243.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <main class="container">
+      <div class="calculator">
+        <header>
+          <h4 style="letter-spacing: 2px">calc</h4>
+          <div class="theme-selector">
+            <p style="font-size: 1.5rem; letter-spacing: 3px; opacity: 0.7">
+              THEME
+            </p>
+            <div class="button">
+              <div class="theme-number">
+                <p>1</p>
+                <p>2</p>
+                <p>3</p>
+              </div>
+              <button id="ball"></button>
+            </div>
+          </div>
+        </header>
+        <div class="display">
+          <div class="screen">
+            <div class="upper-con">
+              <p id="currentValue"></p>
+              <p id="sign"></p>
+              <p id="secondValue"></p>
+              <p class="equalSign">=</p>
+            </div>
+            <h4>0</h4>
+          </div>
+        </div>
+        <div class="keypad">
+          <!-- numbers -->
+          <button class="numbers">7</button>
+          <button class="numbers">8</button>
+          <button class="numbers">9</button>
+          <button class="numbers">4</button>
+          <button class="numbers">5</button>
+          <button class="numbers">6</button>
+          <button class="numbers">1</button>
+          <button class="numbers">2</button>
+          <button class="numbers">3</button>
+          <button class="numbers">0</button>
+          <!-- operator -->
+          <button class="operator" id="plus">+</button>
+          <button class="operator" id="minus">-</button>
+          <button class="operator" id="multiply">x</button>
+          <button class="operator" id="divide">÷</button>
+          <!-- others -->
+          <button class="others" id="delete">DEL</button>
+          <button class="others" id="dot">.</button>
+          <button class="others" id="reset">Reset</button>
+          <button class="operator" id="equal">=</button>
+        </div>
+      </div>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
